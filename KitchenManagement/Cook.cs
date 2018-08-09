@@ -10,5 +10,20 @@ namespace KitchenManagement
 			: base(ref myKitchen, salary, name, birtDate)
 		{
 		}
+
+		protected override bool ConditionMetForWork()
+		{
+			return _hasKnife;
+		}
+
+		protected override void DoesTheirJob()
+		{
+			Yell("I'm cooking!");
+		}
+
+		protected override void YellReasoningWhyCantWork()
+		{
+			Yell("I can't work because I don't have a knife!");
+		}
 	}
 }

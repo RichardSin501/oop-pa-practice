@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KitchenManagement
 {
@@ -24,9 +25,13 @@ namespace KitchenManagement
 			//todo
 		}
 
-		public void Run(int round)
+		public void Run()
 		{
 			//todo
+		}
+
+		public void NeedIngredient(Ingredient ingredient)
+		{
 		}
 	}
 }

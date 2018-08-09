@@ -30,5 +30,22 @@ namespace KitchenManagement
 			Name = name;
 			BirtDate = birtDate;
 		}
+
+		public void Work()
+		{
+			if (ConditionMetForWork()) DoesTheirJob();
+			else YellReasoningWhyCantWork();
+		}
+
+		protected abstract bool ConditionMetForWork();
+
+		protected abstract void DoesTheirJob();
+
+		protected abstract void YellReasoningWhyCantWork();
+
+		protected void Yell(string sentence)
+		{
+			Console.WriteLine($"{Name}, {this.GetType().Name} yells: {sentence}");
+		}
 	}
 }

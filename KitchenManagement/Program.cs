@@ -6,6 +6,9 @@ namespace KitchenManagement
 	{
 		private static void Main()
 		{
+			Kitchen kitchen = new Kitchen();
+			kitchen.Run();
+			Console.ReadKey();
 		}
 	}
 }

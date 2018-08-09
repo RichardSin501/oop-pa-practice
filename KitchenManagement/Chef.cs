@@ -6,7 +6,7 @@ namespace KitchenManagement
 	{
 		private readonly Random _random = new Random();
 
-		public Chef(ref Kitchen myKitchen, int salary, string name, DateTime birtDate) : base(ref myKitchen, salary, name, birtDate)
+		public Chef(Kitchen myKitchen, int salary, string name, DateTime birtDate) : base(myKitchen, salary, name, birtDate)
 		{ }
 
 		protected override void DoesTheirJob()
@@ -17,7 +17,9 @@ namespace KitchenManagement
 			}
 			else
 			{
-				MyKitchen.NeedIngredient(Util.RandomIngredient());
+				Ingredient requestedIngredient = Util.RandomIngredient();
+				Yell($"I'm asking for some {requestedIngredient}");
+				MyKitchen.NeedIngredient(requestedIngredient);
 			}
 		}
 	}

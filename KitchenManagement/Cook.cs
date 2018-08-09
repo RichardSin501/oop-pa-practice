@@ -4,26 +4,27 @@ namespace KitchenManagement
 {
 	public class Cook : Employee
 	{
-		private bool _hasKnife = false;
+		public bool HasKnife { get; set; } = false;
 
-		public Cook(ref Kitchen myKitchen, int salary, string name, DateTime birtDate)
-			: base(ref myKitchen, salary, name, birtDate)
+		public Cook(Kitchen myKitchen, int salary, string name, DateTime birtDate)
+			: base(myKitchen, salary, name, birtDate)
 		{
 		}
 
-		protected override bool ConditionMetForWork()
+		public void Work()
 		{
-			return _hasKnife;
+			if (ConditionMetForWork()) DoesTheirJob();
 		}
 
-		protected override void DoesTheirJob()
+		protected virtual bool ConditionMetForWork()
+		{
+			if (!HasKnife) Yell("I can't work because I don't have a knife!");
+			return HasKnife;
+		}
+
+		protected virtual void DoesTheirJob()
 		{
 			Yell("I'm cooking!");
-		}
-
-		protected override void YellReasoningWhyCantWork()
-		{
-			Yell("I can't work because I don't have a knife!");
 		}
 	}
 }

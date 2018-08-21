@@ -5,17 +5,17 @@ namespace KitchenManagement
 {
 	public class Kitchen
 	{
-		private static int _nextId = 1;
-		private int _id;
-		private bool outOfIngredients = false;
+		private bool _outOfIngredients = false;
 		private List<Employee> EmployeeList { get; } = new List<Employee>();
 
 		public Kitchen()
 		{
-			_id = _nextId++;
+			Hire();
+			GiveKnifes();
+			TaxReport();
 		}
 
-		public void Hire()
+		private void Hire()
 		{
 			EmployeeList.Add(new Chef(this, 200, "John", new DateTime(1999, 1, 1)));
 			EmployeeList.Add(new Chef(this, 200, "James", new DateTime(1998, 1, 1)));
@@ -40,15 +40,7 @@ namespace KitchenManagement
 
 		public void Run()
 		{
-			Hire();
-			GiveKnifes();
-
-			foreach (var employee in EmployeeList)
-			{
-				employee.TaxReport();
-			}
-
-			while (!outOfIngredients)
+			while (!_outOfIngredients)
 			{
 				foreach (var employee in EmployeeList)
 				{
@@ -57,6 +49,14 @@ namespace KitchenManagement
 			}
 
 			Console.WriteLine("We have ran out of ingredients.");
+		}
+
+		private void TaxReport()
+		{
+			foreach (var employee in EmployeeList)
+			{
+				employee.TaxReport();
+			}
 		}
 
 		public void NeedIngredient(Ingredient ingredient)
@@ -76,7 +76,7 @@ namespace KitchenManagement
 
 			if (!gotIngredient)
 			{
-				outOfIngredients = true;
+				_outOfIngredients = true;
 			}
 		}
 	}
